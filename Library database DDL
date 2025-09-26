@@ -1,4 +1,4 @@
-# CREATE DATABASE	Library_Management;
+CREATE DATABASE	Library_Management;
 USE Library_Management;
 -- Table for Library Members
 CREATE TABLE Members (
