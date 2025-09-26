@@ -1,0 +1,75 @@
+# CREATE DATABASE	Library_Management;
+USE Library_Management;
+-- Table for Library Members
+CREATE TABLE Members (
+    MemberID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Phone VARCHAR(15),
+    JoinDate DATE NOT NULL,
+    Address VARCHAR(255)
+);
+
+-- Table for Authors
+CREATE TABLE Authors (
+    AuthorID INT PRIMARY KEY AUTO_INCREMENT,
+    AuthorName VARCHAR(100) NOT NULL
+);
+
+-- Table for Publishers
+CREATE TABLE Publishers (
+    PublisherID INT PRIMARY KEY AUTO_INCREMENT,
+    PublisherName VARCHAR(100) NOT NULL UNIQUE,
+    Address VARCHAR(255)
+);
+
+-- Table for Book Titles
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY AUTO_INCREMENT,
+    ISBN VARCHAR(13) NOT NULL UNIQUE,
+    Title VARCHAR(255) NOT NULL,
+    PublisherID INT,
+    PublicationYear YEAR,
+    Genre VARCHAR(50),
+    FOREIGN KEY (PublisherID) REFERENCES Publishers(PublisherID)
+);
+
+-- Junction table for the Many-to-Many relationship between Books and Authors
+CREATE TABLE BookAuthors (
+    BookID INT,
+    AuthorID INT,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+);
+
+-- Table for individual copies of each book
+CREATE TABLE BookCopies (
+    CopyID INT PRIMARY KEY AUTO_INCREMENT,
+    BookID INT,
+    Status ENUM('Available', 'Borrowed', 'Lost') NOT NULL DEFAULT 'Available',
+    ShelfLocation VARCHAR(50),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+);
+
+-- Table for loan transactions
+CREATE TABLE Loans (
+    LoanID INT PRIMARY KEY AUTO_INCREMENT,
+    CopyID INT,
+    MemberID INT,
+    LoanDate DATE NOT NULL,
+    DueDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (CopyID) REFERENCES BookCopies(CopyID),
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
+);
+
+-- Table for fines
+CREATE TABLE Fines (
+    FineID INT PRIMARY KEY AUTO_INCREMENT,
+    LoanID INT,
+    FineAmount DECIMAL(5, 2) NOT NULL,
+    Status ENUM('Unpaid', 'Paid') NOT NULL DEFAULT 'Unpaid',
+    FOREIGN KEY (LoanID) REFERENCES Loans(LoanID)
+);
