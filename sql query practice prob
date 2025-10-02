@@ -14,6 +14,16 @@ WHERE bc.Status = 'Available';
 👉 Show: FirstName, LastName, Book Title, LoanDate, DueDate**
 
 SELECT m.FirstName, m.LastName, l.copyID, l.LoanDate, l.DueDate
-FROM members m                     
-INNER JOIN loans l           ~~~~~~~~~~~~~~~~~~~~~~~~~
-ON m.memberid = l.loanid;
+FROM members m                                        \
+INNER JOIN loans l           ~~~~~~~~~~~~~~~~~~~~~~~~~ >    This query works well but there is problem to get book title.
+ON m.memberid = l.loanid;                             /     after noticing that we need to join three tables 
+
+SELECT m.FirstName, m.LastName, b.title, l.LoanDate, l.DueDate
+FROM members m
+INNER JOIN loans l
+ON m.memberid = l.MemberID
+INNER JOIN bookcopies bc                                            \
+ON l.CopyID = bc.CopyID               ------------------------------=> multiple tables joined.
+INNER JOIN books b                                                  /
+ON bc.bookid = b.BookID
+WHERE bc.Status = 'Borrowed';
