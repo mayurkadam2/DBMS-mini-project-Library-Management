@@ -1,1 +1,19 @@
+#**Find the list of all books that are currently available in the library (not borrowed or lost).
+👉 Show: Book Title, Genre, ShelfLocation**
+SELECT *                                               \
+FROM bookcopies               ------------------------- >  This query only gives the status of the available books
+WHERE status = 'available';                            /    To get the title that is available in the books table so we need to join them.
 
+SELECT b.Title, b.Genre, bc.ShelfLocation
+FROM books b                                        \
+INNER JOIN bookcopies bc   ~~~~~~~~~~~~~~~~~~~~~~~~~ > This is the correct query
+ON b.BookID = bc.BookID                             /
+WHERE bc.Status = 'Available';
+
+#**Find the names of members who currently have a borrowed book.
+👉 Show: FirstName, LastName, Book Title, LoanDate, DueDate**
+
+SELECT m.FirstName, m.LastName, l.copyID, l.LoanDate, l.DueDate
+FROM members m                     
+INNER JOIN loans l           ~~~~~~~~~~~~~~~~~~~~~~~~~
+ON m.memberid = l.loanid;
