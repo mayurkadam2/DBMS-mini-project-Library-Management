@@ -1,0 +1,97 @@
+-- Insert Members (30 entries)
+INSERT INTO Members (FirstName, LastName, Email, Phone, JoinDate, Address) VALUES
+('Roger','Mcconnell','roger.mcconnell@example.com','609-440-5238','2021-10-20','07700 Justin Village Apt. 305, Hancockbury, MT'),
+('John','Thompson','john.thompson@example.com','001-685-447-419','2022-02-23','PSC 7823, Box 2206, APO AA 46755'),
+('Gary','Haas','gary.haas@example.com','750-641-1769','2023-09-27','905 Allen Drives, Hamiltonbury, ND'),
+('Dylan','Parker','dylan.parker@example.com','+1-843-197-7900','2023-09-25','2505 Ann Pines, Evansport, MN'),
+('Jason','Fisher','jason.fisher@example.com','(247)085-8197','2023-06-09','Unit 5960 Box 0923, DPO AP 09386'),
+('Maria','Walker','maria.walker@example.com','(201) 658-9067','2020-01-12','12 Oakwood Lane, Springfield, IL'),
+('Sophia','Patel','sophia.patel@example.com','+91-9812345678','2021-03-15','B-402 Sunshine Apt, Pune, India'),
+('Ethan','Nguyen','ethan.nguyen@example.com','(408) 912-3344','2022-07-11','123 Main St, San Jose, CA'),
+('Isabella','Brown','isabella.brown@example.com','+44-7700-900123','2023-01-18','221B Baker Street, London, UK'),
+('Liam','Singh','liam.singh@example.com','+91-9834567890','2024-06-20','D-56 Green Valley, Mumbai, India'),
+-- (add 20 more similar realistic rows for Members) 
+('Olivia','Taylor','olivia.taylor@example.com','601-222-4589','2021-08-22','56 Pine Ave, Dallas, TX'),
+('Noah','Wilson','noah.wilson@example.com','(555)666-1212','2022-09-13','89 Maple Street, Boston, MA'),
+('Emma','Davis','emma.davis@example.com','(415)987-6543','2020-11-30','45 Elm Court, Seattle, WA'),
+('James','Martinez','james.martinez@example.com','555-883-7777','2019-05-14','78 Hill Road, Denver, CO'),
+('Ava','Miller','ava.miller@example.com','777-333-2222','2023-04-25','90 Lakeview, Orlando, FL'),
+('Alexander','White','alex.white@example.com','(800)555-2020','2024-01-15','12 Cherry Lane, Austin, TX'),
+('Charlotte','Moore','charlotte.moore@example.com','+61-499-234-567','2022-12-19','5 Palm Street, Sydney, AUS'),
+('William','Lopez','will.lopez@example.com','333-999-1000','2021-06-09','200 Sunset Blvd, Los Angeles, CA'),
+('Amelia','Rodriguez','amelia.rodriguez@example.com','(123)456-7890','2020-03-03','88 Broadway, New York, NY'),
+('Benjamin','Hernandez','ben.hernandez@example.com','444-555-6666','2023-10-05','67 Ocean Dr, Miami, FL'),
+('Mia','Hall','mia.hall@example.com','999-888-7777','2024-02-22','91 Garden Ave, Portland, OR'),
+('Lucas','Young','lucas.young@example.com','222-111-0000','2021-05-05','32 River Rd, Chicago, IL'),
+('Evelyn','Allen','evelyn.allen@example.com','(888)222-3333','2022-07-07','17 Pinewood St, Houston, TX'),
+('Henry','King','henry.king@example.com','+44-1234-567890','2020-09-09','56 Queensway, London, UK'),
+('Ella','Wright','ella.wright@example.com','333-444-5555','2019-11-11','23 Cherry Blossom Rd, Tokyo, JP'),
+('Daniel','Scott','daniel.scott@example.com','+91-9876543210','2023-12-01','14 MG Road, Bangalore, India'),
+('Grace','Green','grace.green@example.com','(555)111-2222','2024-05-12','29 Hilltop Ave, Dublin, Ireland'),
+('Matthew','Adams','matthew.adams@example.com','444-222-1111','2022-08-30','99 Oakwood Dr, Toronto, Canada'),
+('Chloe','Baker','chloe.baker@example.com','666-777-8888','2021-04-14','12 Moonlight St, Cape Town, SA'),
+('David','Nelson','david.nelson@example.com','999-444-3333','2020-10-21','15 Rose Garden, Paris, France');
+
+-- Insert Authors
+INSERT INTO Authors (AuthorName) VALUES
+('J.K. Rowling'),
+('George R.R. Martin'),
+('Agatha Christie'),
+('Chetan Bhagat'),
+('Stephen King'),
+('Paulo Coelho'),
+('J.R.R. Tolkien'),
+('Dan Brown'),
+('Arundhati Roy'),
+('Isaac Asimov');
+
+-- Insert Publishers
+INSERT INTO Publishers (PublisherName, Address) VALUES
+('Penguin Random House','New York, USA'),
+('HarperCollins','London, UK'),
+('Oxford University Press','Oxford, UK'),
+('Scholastic','New York, USA'),
+('Rupa Publications','Delhi, India');
+
+-- Insert Books
+INSERT INTO Books (ISBN, Title, PublisherID, PublicationYear, Genre) VALUES
+('9780439139601','Harry Potter and the Goblet of Fire',1,2000,'Fantasy'),
+('9780553103540','A Game of Thrones',2,1996,'Fantasy'),
+('9780007120830','Murder on the Orient Express',2,1934,'Mystery'),
+('9788129135728','Half Girlfriend',5,2014,'Romance'),
+('9781501142970','It',1,1986,'Horror'),
+('9780061122415','The Alchemist',2,1988,'Fiction'),
+('9780261103573','The Lord of the Rings',1,1954,'Fantasy'),
+('9780385504201','The Da Vinci Code',2,2003,'Thriller'),
+('9788175309436','The God of Small Things',5,1997,'Fiction'),
+('9780553293357','Foundation',3,1951,'Science Fiction');
+
+-- Insert BookAuthors (many-to-many)
+INSERT INTO BookAuthors (BookID, AuthorID) VALUES
+(1,1),(2,2),(3,3),(4,4),(5,5),
+(6,6),(7,7),(8,8),(9,9),(10,10);
+
+-- Insert BookCopies
+INSERT INTO BookCopies (BookID, Status, ShelfLocation) VALUES
+(1,'Available','A1'),
+(1,'Borrowed','A1'),
+(2,'Available','B2'),
+(3,'Available','C3'),
+(4,'Lost','D4'),
+(5,'Available','E5'),
+(6,'Available','F6'),
+(7,'Borrowed','G7'),
+(8,'Available','H8'),
+(9,'Available','I9'),
+(10,'Borrowed','J10');
+
+-- Insert Loans
+INSERT INTO Loans (CopyID, MemberID, LoanDate, DueDate, ReturnDate) VALUES
+(2,1,'2024-09-01','2024-09-15','2024-09-14'),
+(7,5,'2024-08-20','2024-09-05',NULL),
+(10,12,'2024-07-10','2024-07-24','2024-07-30');
+
+-- Insert Fines
+INSERT INTO Fines (LoanID, FineAmount, Status) VALUES
+(3,50.00,'Unpaid'),
+(1,0.00,'Paid');
